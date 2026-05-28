@@ -10,28 +10,7 @@ import re
 import matplotlib.pyplot as plt
 from openai import OpenAI
 from datetime import datetime
-#==========为人工智能助手添加API==========
-client = OpenAI(
-    api_key = st.secrets.get("DEEPSEEK_API_KEY", os.getenv("DEEPSEEK_API_KEY", "")),
-    base_url = "https://api.deepseek.com"
-)
-def call_deepseek(prompt, patient_context=""):
-    system_prompt = "你是高血压健康助手，回答要简洁，不超过150字。"
-    full_prompt = f"患者信息：{patient_context}\n\n问题：{prompt}"
-    try:
-        response = client.chat.completions.create(
-            model="deepseek-chat",
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": full_prompt}
-            ],
-            temperature=0.7,
-            max_tokens=3000,
-            timeout=30.0
-        )
-        return response.choices[0].message.content
-    except Exception as e:
-        return get_offline_advice(prompt)
+
 def get_offline_advice(prompt):
     #==========离线模式下的健康建议==========
     if "饮食" in prompt or "吃" in prompt:
@@ -72,7 +51,7 @@ Best_Threshold = 0.30
 #==========模型加载==========
 @st.cache_resource
 def load_model():
-    model_path = r"D:\Hypertension Project\models\Fusion_Model.pkl"
+    model_path = 'Fusion_Model.pkl'
     return job.load(model_path)
 model = load_model()
 feature_cols = [
@@ -256,33 +235,6 @@ with tab1:
             else:
                 st.markdown("- 尽快就医检查🏥\n- 测量实际血压❤️\n- 改善生活习惯🤒")
                 st.warning("⚠️本结果仅供参考，不能替代专业医疗诊断。")
-        # ==========接入智能助手==========
-        st.divider()
-        st.markdown("## 🤖 AI 健康助手")
-        if "messages" not in st.session_state:
-            st.session_state.messages = []
-        # ==========聊天输入框==========
-        if prompt := st.chat_input("在此输入问题..."):
-            st.session_state.messages.append({"role": "user", "content": prompt})
-            with st.chat_message("user"):
-                st.write(prompt)
-
-            with st.chat_message("assistant"):
-                with st.spinner("思考中..."):
-                    patient_context = st.session_state.get("patient_context", "")
-                    response = call_deepseek(prompt, patient_context)
-                    st.write(response)
-                st.session_state.messages.append({"role": "assistant", "content": response})
-            st.rerun()
-         # ==========显示聊天记录==========
-        with st.expander("💬 查看对话记录", expanded=True):
-            # ==========如果聊天记录为空，显示提示==========
-            if len(st.session_state.messages) == 0:
-                st.caption("暂无对话记录，在下方输入问题开始咨询")
-            else:
-                for msg in st.session_state.messages:
-                    with st.chat_message(msg["role"]):
-                        st.write(msg["content"])
     else:
         col1, col2, col3 = st.columns([1, 1, 1])
         with col1:
@@ -400,7 +352,7 @@ with tab3:
         #==========特征重要性图==========
         st.markdown("### 🧩特征重要性图")
         st.divider()
-        img_path1 = r"D:\Hypertension Project\reports\photos\SHAP\2_SHAP_Bar.png"
+        img_path1 = '2_SHAP_Bar.png'
         st.image(img_path1 ,width = 600)
         st.markdown("""
         #### 🥇 核心主导特征
@@ -428,7 +380,7 @@ with tab3:
         #==========混淆矩阵热力图==========
         st.markdown("### 🧩混淆矩阵热力图")
         st.divider()
-        img_path2 = r"D:\Hypertension Project\reports\photos\ROC&Variable importance&Metrix\Fusion_Model\2_Confusion_Matrix.png"
+        img_path2 = '2_Confusion_Matrix.png'
         st.image(img_path2, width = 600)
         st.markdown("""
             #### 总体分类概况
@@ -450,7 +402,7 @@ with tab3:
         #==========AUC图==========
         st.markdown("### 🧩AUC图")
         st.divider()
-        img_path3 = r"D:\Hypertension Project\reports\photos\ROC&Variable importance&Metrix\Fusion_Model\3_ROC_Curve.png"
+        img_path3 = '3_ROC_Curve.png'
         st.image(img_path3, width=600)
         st.markdown("""
             #### 曲线形态分析
@@ -466,7 +418,7 @@ with tab3:
         #==========F1图==========
         st.markdown("### 🧩F1图")
         st.divider()
-        img_path4 = r"D:\Hypertension Project\reports\photos\Metrics\04_F1_Score.png"
+        img_path4 = '04_F1_Score.png'
         st.image(img_path4, width=600)
         st.markdown("""
         #### 🏆 总体排名
@@ -516,7 +468,7 @@ with tab3:
         #==========训练日志可视化==========
         st.markdown("### 📈训练日志可视化曲线")
         st.divider()
-        log_path = r"D:\Hypertension Project\reports\training_log\training_log.txt"
+        log_path = 'training_log.txt'
         auc_values = []
         with open(log_path, "r") as f:
             for line in f:
@@ -563,7 +515,7 @@ with tab3:
         st.divider()
         st.markdown("#### 8模型ROC曲线对比")
         st.divider()
-        img_path = r'D:\Hypertension Project\reports\photos\All_Models\All_Models_ROC.png'
+        img_path = 'All_Models_ROC.png'
         st.image(img_path, width=600)
         # ==========表格==========
         st.divider()
