@@ -8,7 +8,6 @@ import numpy as np
 import os
 import re
 import matplotlib.pyplot as plt
-from openai import OpenAI
 from datetime import datetime
 
 def get_offline_advice(prompt):
