@@ -357,3 +357,7 @@ https://github.com/catboost/catboost/releases
 - **数据处理**：Pandas / NumPy
 - **模型持久化**：Joblib
 - **移植**: ONNX Runtime,CatBoost C API
+
+## 最后
+与统计建模大赛相关的内容皆由作者一人完成，其余队友参与内容为0
+
