@@ -24,7 +24,7 @@ def save_prediction(patient_data, proba, threshold, risk_level):
         'threshold': threshold,
         'risk_level': risk_level
     }
-   if 'history' not in st.session_state:
+    if 'history' not in st.session_state:
         st.session_state.history = []
     st.session_state.history.append(record)
     return True
