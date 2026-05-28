@@ -12,7 +12,7 @@ from reportlab.lib.units import mm
 #中文字体
 #========================================
 try:
-    pdfmetrics.registerFont(TTFont('SimKai', 'C:/Windows/Fonts/simkai.ttf'))
+    pdfmetrics.registerFont(TTFont('SimKai', 'simkai.ttf'))
     FONT_NAME = 'SimKai'
 except:
     FONT_NAME = 'Helvetica'
