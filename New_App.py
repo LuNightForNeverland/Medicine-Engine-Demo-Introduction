@@ -8,6 +8,7 @@ import numpy as np
 import os
 import re
 import matplotlib.pyplot as plt
+from openai import OpenAI
 from datetime import datetime
 
 def get_offline_advice(prompt):
@@ -21,7 +22,7 @@ def get_offline_advice(prompt):
     else:
         return "💡 高血压健康建议：\n- 控制盐摄入 < 6g/天\n- 每周运动 ≥ 150 分钟\n- 戒烟限酒，减轻压力\n- 定期监测血压"
 #==========创建预测历史记录==========
-HISTORY_PATH = r"D:\Hypertension Project\reports\patient_history\patient_history.csv"
+HISTORY_PATH = 'patient_history.csv'
 def save_prediction(patient_data, proba, threshold, risk_level):
     record = {
         'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
@@ -75,7 +76,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 col1, col2, col3, col4, col5 = st.columns([1, 1, 1, 1, 1])
 with col1:
-    st.image(r"D:\Hypertension Project\logo\logo_of_gmu.png", use_container_width=True)
+    st.image('logo_of_gmu.png', use_container_width=True)
 st.divider()
 st.title("🏥高血压风险评估系统")
 st.markdown("""
