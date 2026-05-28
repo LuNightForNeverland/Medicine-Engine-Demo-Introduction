@@ -51,7 +51,7 @@ Best_Threshold = 0.30
 #==========模型加载==========
 @st.cache_resource
 def load_model():
-    model_path = r"D:\Hypertension Project\models\Fusion_Model.pkl"
+    model_path = 'Fusion_Model.pkl'
     return job.load(model_path)
 model = load_model()
 feature_cols = [
@@ -352,7 +352,7 @@ with tab3:
         #==========特征重要性图==========
         st.markdown("### 🧩特征重要性图")
         st.divider()
-        img_path1 = r"D:\Hypertension Project\reports\photos\SHAP\2_SHAP_Bar.png"
+        img_path1 = '2_SHAP_Bar.png'
         st.image(img_path1 ,width = 600)
         st.markdown("""
         #### 🥇 核心主导特征
@@ -380,7 +380,7 @@ with tab3:
         #==========混淆矩阵热力图==========
         st.markdown("### 🧩混淆矩阵热力图")
         st.divider()
-        img_path2 = r"D:\Hypertension Project\reports\photos\ROC&Variable importance&Metrix\Fusion_Model\2_Confusion_Matrix.png"
+        img_path2 = '2_Confusion_Matrix.png'
         st.image(img_path2, width = 600)
         st.markdown("""
             #### 总体分类概况
@@ -402,7 +402,7 @@ with tab3:
         #==========AUC图==========
         st.markdown("### 🧩AUC图")
         st.divider()
-        img_path3 = r"D:\Hypertension Project\reports\photos\ROC&Variable importance&Metrix\Fusion_Model\3_ROC_Curve.png"
+        img_path3 = '3_ROC_Curve.png'
         st.image(img_path3, width=600)
         st.markdown("""
             #### 曲线形态分析
@@ -418,7 +418,7 @@ with tab3:
         #==========F1图==========
         st.markdown("### 🧩F1图")
         st.divider()
-        img_path4 = r"D:\Hypertension Project\reports\photos\Metrics\04_F1_Score.png"
+        img_path4 = '04_F1_Score.png'
         st.image(img_path4, width=600)
         st.markdown("""
         #### 🏆 总体排名
@@ -468,7 +468,7 @@ with tab3:
         #==========训练日志可视化==========
         st.markdown("### 📈训练日志可视化曲线")
         st.divider()
-        log_path = r"D:\Hypertension Project\reports\training_log\training_log.txt"
+        log_path = 'training_log.txt'
         auc_values = []
         with open(log_path, "r") as f:
             for line in f:
@@ -515,7 +515,7 @@ with tab3:
         st.divider()
         st.markdown("#### 8模型ROC曲线对比")
         st.divider()
-        img_path = r'D:\Hypertension Project\reports\photos\All_Models\All_Models_ROC.png'
+        img_path = 'All_Models_ROC.png'
         st.image(img_path, width=600)
         # ==========表格==========
         st.divider()
