@@ -8,19 +8,8 @@ import numpy as np
 import os
 import re
 import matplotlib.pyplot as plt
-from openai import OpenAI
 from datetime import datetime
 
-def get_offline_advice(prompt):
-    #==========离线模式下的健康建议==========
-    if "饮食" in prompt or "吃" in prompt:
-        return "🥗 饮食建议：\n- 每日盐摄入 < 6g\n- 多吃蔬菜水果和全谷物\n- 减少饱和脂肪和加工食品"
-    elif "运动" in prompt or "锻炼" in prompt:
-        return "🏃 运动建议：\n- 每周 ≥ 150 分钟中强度有氧运动\n- 如快走、游泳、骑行\n- 结合每周 2 次力量训练"
-    elif "就医" in prompt or "医生" in prompt:
-        return "🏥 就医指南：\n- 如评估为高风险，建议尽快就医\n- 进行 24 小时动态血压监测\n- 遵医嘱，不要自行用药"
-    else:
-        return "💡 高血压健康建议：\n- 控制盐摄入 < 6g/天\n- 每周运动 ≥ 150 分钟\n- 戒烟限酒，减轻压力\n- 定期监测血压"
 #==========创建预测历史记录==========
 HISTORY_PATH = 'patient_history.csv'
 def save_prediction(patient_data, proba, threshold, risk_level):
