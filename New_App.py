@@ -24,16 +24,13 @@ def save_prediction(patient_data, proba, threshold, risk_level):
         'threshold': threshold,
         'risk_level': risk_level
     }
-    df_record = pd.DataFrame([record])
-    if os.path.exists(HISTORY_PATH):
-        df_record.to_csv(HISTORY_PATH, mode='a', header=False, index=False, encoding='utf-8-sig')
-    else:
-        os.makedirs(os.path.dirname(HISTORY_PATH), exist_ok=True)
-        df_record.to_csv(HISTORY_PATH, index=False, encoding='utf-8-sig')
+   if 'history' not in st.session_state:
+        st.session_state.history = []
+    st.session_state.history.append(record)
     return True
 def load_history():
-    if os.path.exists(HISTORY_PATH):
-        return pd.read_csv(HISTORY_PATH, encoding='utf-8-sig')
+    if 'history' in st.session_state:
+        return pd.DataFrame(st.session_state.history)
     return pd.DataFrame()
 #==========最佳阈值 已经在模型中计算获得==========
 Best_Threshold = 0.30
@@ -314,15 +311,10 @@ with tab3:
             else:
                 st.warning("请先进行一次评估")
     st.divider()
-    st.markdown("#### 🕛️历史评估记录")
-    df_history = load_history()
-    if not df_history.empty:
-        df_history = df_history.sort_values('timestamp', ascending=False)
-        st.dataframe(
-            df_history[['visit_date', 'visit_time', 'age', 'sex', 'probability', 'risk_level']],
-            use_container_width=True,
-            hide_index=True
-        )
+    if 'history' in st.session_state and st.session_state.history:
+    st.subheader("预测历史")
+    for record in st.session_state.history[::-1]:  # 倒序显示，最新的在前
+        st.write(f"时间: {record['timestamp']}, 风险: {record['risk']}, 概率: {record['probability']:.4f}")
         # ==========导出功能==========
         csv = df_history.to_csv(index=False, encoding='utf-8-sig')
         st.download_button(
