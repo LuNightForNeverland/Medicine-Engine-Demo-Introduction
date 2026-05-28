@@ -316,6 +316,7 @@ with tab3:
         for record in st.session_state.history[::-1]:  # 倒序显示，最新的在前
             st.write(f"时间: {record['timestamp']}, 风险: {record['risk_level']}, 概率: {record['probability']:.4f}")
         # ==========导出功能==========
+        df_history = pd.DataFrame(st.session_state.history)
         csv = df_history.to_csv(index=False, encoding='utf-8-sig')
         st.download_button(
             label="🖨️导出全部记录 (CSV)",
