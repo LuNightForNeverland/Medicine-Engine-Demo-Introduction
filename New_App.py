@@ -312,7 +312,7 @@ with tab3:
                 st.warning("请先进行一次评估")
     st.divider()
     if 'history' in st.session_state and st.session_state.history:
-    st.subheader("预测历史")
+        st.subheader("预测历史")
     for record in st.session_state.history[::-1]:  # 倒序显示，最新的在前
         st.write(f"时间: {record['timestamp']}, 风险: {record['risk']}, 概率: {record['probability']:.4f}")
         # ==========导出功能==========
