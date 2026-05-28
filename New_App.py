@@ -6,6 +6,7 @@ import pandas as pd
 import joblib as job
 import numpy as np
 import os
+os.environ['TZ'] = 'Asia/Shanghai'
 import re
 import matplotlib.pyplot as plt
 from datetime import datetime
