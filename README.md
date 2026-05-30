@@ -2,8 +2,10 @@
 
 
 # 高血压风险预测系统 - 基于多模型异质集成
-
+### 高血压预测网址直达:
 https://medicine-engine-demo-introductiongit-nrq2w2ljgy72w3wlv9edf9.streamlit.app/
+### 模型训练数据集:
+https://www.kaggle.com/datasets/zkskhurram/blood-pressure-by-age-global-dataset
 
 ---
 
