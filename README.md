@@ -352,7 +352,7 @@ https://github.com/catboost/catboost/releases
 | **四融合** | **0.7900** | **0.7821** | **0.0394** |
 
 ## 技术栈
-- **语言**：Python 3.8+
+- **语言**：Python 3.8+、C++
 - **机器学习**：XGBoost / LightGBM / CatBoost / Scikit-learn
 - **可视化**：Matplotlib / Seaborn / SHAP
 - **前端**：Streamlit
