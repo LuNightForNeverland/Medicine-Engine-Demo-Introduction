@@ -352,13 +352,13 @@ https://github.com/catboost/catboost/releases
 | **四融合** | **0.7900** | **0.7821** | **0.0394** |
 
 ## 技术栈
-- **语言**：Python 3.8+、C++
+- **语言**：Python 3.8+ / C++
 - **机器学习**：XGBoost / LightGBM / CatBoost / Scikit-learn
 - **可视化**：Matplotlib / Seaborn / SHAP
 - **前端**：Streamlit
 - **数据处理**：Pandas / NumPy
 - **模型持久化**：Joblib
-- **移植**: ONNX Runtime,CatBoost C API
+- **移植**: ONNX Runtime / CatBoost C API
 
 ## 最后
 与统计建模大赛相关的内容皆由作者一人完成，其余队友参与内容为0
