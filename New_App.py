@@ -67,7 +67,7 @@ with col1:
 st.divider()
 st.title("🏥高血压风险评估系统")
 st.markdown("""
-    本平台基于传统算法，在进行传统机器学习单模型训练并对比诸多模型在Kaggle公开数据集(https://www.kaggle.com/datasets/zkskhurram/blood-pressure-by-age-global-dataset)中所展示的优缺点后，进行多模型融合实验，最终选择融合XGBoost、CatBoost、RandomForest和Logistic模型为基学习器，XGBoost为元学习器的Stacking集成算法策略框架进行病症诊断。该模型搭载在基于Streamlit搭建的可视化前端支持医生输入患者信息、症状特征、检查数据等，通过人工智能算法辅助完成疾病诊断和风险评估。请在侧边栏填写信息，模型将会为您评估患者高血压风险以辅助后续治疗。
+    本平台基于传统算法，在进行传统机器学习单模型训练并对比诸多模型在Kaggle公开数据集(https://www.kaggle.com/datasets/zkskhurram/blood-pressure-by-age-global-dataset) 中所展示的优缺点后，进行多模型融合实验，最终选择融合XGBoost、CatBoost、RandomForest和Logistic模型为基学习器，XGBoost为元学习器的Stacking集成算法策略框架进行病症诊断。该模型搭载在基于Streamlit搭建的可视化前端支持医生输入患者信息、症状特征、检查数据等，通过人工智能算法辅助完成疾病诊断和风险评估。请在侧边栏填写信息，模型将会为您评估患者高血压风险以辅助后续治疗。
 """)
 #==========侧边栏设置，用于用户输入信息==========
 with st.sidebar:
